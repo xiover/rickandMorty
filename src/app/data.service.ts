@@ -1,17 +1,17 @@
 import { Injectable } from "@angular/core";
-import { Personaje } from "./models/city/personaje.interface";
-import { Observable } from "rxjs";
+import { ResponsePersonaje } from "./models/city/personaje.interface";
+//import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
+import { endpoints } from "./enums/endpoints";
 
 @Injectable({
    providedIn: 'root'
 })
-export class DataService{
-    private UrlPersonaje='https://rickandmortyapi.com/api/character';    
+export class DataService{   
     constructor(private http: HttpClient){}
 
-    getPersonajes():Observable<Personaje[]>{
-        return this.http.get<Personaje[]>(this.UrlPersonaje)
+    getPersonajes(){
+        return this.http.get<ResponsePersonaje>(endpoints.baseUrl+endpoints.personaje)
     }
 
 }

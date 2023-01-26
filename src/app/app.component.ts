@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from './data.service';
+import { Personaje, ResponsePersonaje } from './models/city/personaje.interface';
 
 
 @Component({
@@ -7,14 +8,17 @@ import { DataService } from './data.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   titulo = 'rickandMorty';
+  characters: Personaje[] = [];
+  asdas = 'holas'
+  constructor(private dataSvc: DataService) { }
 
-  constructor(private dataSvc:DataService){}
-
-  ngOnInit(){
-    this.dataSvc.getPersonajes().subscribe( data => console.log(data) )
+  ngOnInit() {
+    this.dataSvc.getPersonajes().subscribe((response: ResponsePersonaje) => {
+      this.characters = response.results;
+    })
   }
 
-  }
+}
 

@@ -1,3 +1,8 @@
 <h1 style="text-align: center;">{{titulo}}</h1>
 
-<app-root></app-root>
+
+<ng-container>
+    <div class="character" *ngFor="let character of characters">
+        <div class="name">{{character.name}}</div>
+    </div>
+</ng-container>
